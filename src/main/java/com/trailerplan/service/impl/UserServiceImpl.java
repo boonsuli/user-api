@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service("userService")
-@Transactional(readOnly = false)
+@Transactional
 @EnableJpaRepositories("com.trailerplan.repository")
 @EntityScan(basePackages = {"com.trailerplan.model.entity"})
 public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implements UserService {
@@ -41,7 +41,7 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
     @Autowired
     private UserRepository userRepository;
     public JpaRepository<UserEntity, Long> getRepository() { return userRepository; }
-    public void setRepository(JpaRepository<UserEntity, Long> repository) { this.userRepository = (UserRepository) repository; };
+    public void setRepository(JpaRepository<UserEntity, Long> repository) { this.userRepository = (UserRepository) repository; }
 
     @Override
     public List<UserDTO> findByLastName(String lastName) {
@@ -79,17 +79,13 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
         return super.findAllByPredicate(predicate);
     }
 
-    /**
-     * @param birthday
-     * @return
-     */
     @Override
     public List<UserDTO> findByBirthday(String birthday) throws ParseException {
         super.initSessionFromEntityManager();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dateParse = sdf.parse(birthday);
         ParameterExpression<Date> birthdayParameter = super.criteriaBuilder.parameter(Date.class);
-        Predicate predicate = super.criteriaBuilder.equal(rootEntity.get("birthday"), dateParse);
+        Predicate predicate = super.criteriaBuilder.equal(rootEntity.get(UserEntity_.BIRTHDAY), dateParse);
         return super.findAllByPredicate(predicate);
     }
 
