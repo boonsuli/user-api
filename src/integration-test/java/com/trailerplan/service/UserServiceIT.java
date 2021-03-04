@@ -21,8 +21,6 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
-import static com.trailerplan.common.TestHelper.shouldTestProductionFields;
-import static com.trailerplan.common.TestHelper.shouldTestStandardDtoFields;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -89,7 +87,7 @@ public class UserServiceIT implements InterfaceTest<UserEntity> {
         List<Optional<UserDTO>> entities = service.findAll();
         assertNotNull(entities);
         assertFalse(entities.isEmpty());
-        assertEquals(entities.size(), 4l);
+        assertEquals(4, entities.size());
     }
 
     @Test
@@ -97,17 +95,6 @@ public class UserServiceIT implements InterfaceTest<UserEntity> {
         Optional<UserDTO> entityFinded = service.findById(1L);
         assertTrue(entityFinded.isPresent());
         assertEquals(1L, entityFinded.get().getId().intValue());
-    }
-
-    @Test
-    public void shouldExtractDTO() throws Exception {
-        try {
-            UserDTO dto = entitySaved.extractDTO();
-            shouldTestStandardDtoFields(dto, entitySaved);
-            shouldTestProductionFields(dto, entitySaved);
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            fail();
-        }
     }
 
     @Test
@@ -130,17 +117,6 @@ public class UserServiceIT implements InterfaceTest<UserEntity> {
         assertThat(userDTOS.size(), equalTo(1));
         UserDTO userDTO = userDTOS.get(0);
         assertThat(userDTO.getName(), containsString(expected));
-    }
-
-    @Test
-    public void shouldFindByUserName() {
-        String expected = "fdhaene";
-        List<UserDTO> userDTOS =  service.findByUserName(expected);
-        assertNotNull(userDTOS);
-        assertFalse(userDTOS.isEmpty());
-        assertThat(userDTOS.size(), equalTo(1));
-        UserDTO userDTO = userDTOS.get(0);
-        assertThat(userDTO.getUserName(), containsString(expected));
     }
 
     @Test

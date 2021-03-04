@@ -53,15 +53,6 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
     }
 
     @Override
-    public List<UserDTO> findByUserName(String userName) {
-        super.initSessionFromEntityManager();
-        Predicate predicate = criteriaBuilder.and(
-            criteriaBuilder.conjunction(),
-            criteriaBuilder.like( criteriaBuilder.upper(rootEntity.get(UserEntity_.USER_NAME)), "%"+userName.toUpperCase()+"%"));
-        return super.findAllByPredicate(predicate);
-    }
-
-    @Override
     public List<UserDTO> findByFirstName(String firstName) {
         super.initSessionFromEntityManager();
         Predicate predicate = criteriaBuilder.and(

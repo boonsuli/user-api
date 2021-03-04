@@ -19,8 +19,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -28,7 +26,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -38,8 +39,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest implements InterfaceTest<UserEntity> {
-
-    private static Logger LOG = LoggerFactory.getLogger(UserServiceTest.class);
 
     @InjectMocks
     private UserServiceImpl service;
@@ -168,25 +167,6 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         assertThat(listDto.size(), equalTo(1));
         UserDTO userDTO = listDto.get(0);
         assertThat(userDTO.getShortName(), anyOf(containsString(expected)));
-    }
-
-    @Test
-    public void shouldFindByUserName() {
-        String expected = "fdhaene";
-        when(sessionMock.createQuery(criteriaEntityQueryMock)).thenReturn(queryEntityMock);
-
-        List<UserEntity> listEntity = new ArrayList<>();
-        UserEntity entity = new  UserEntity();
-        entity.setUserName(expected);
-        listEntity.add(entity);
-        when(queryEntityMock.getResultList()).thenReturn(listEntity);
-
-        List<UserDTO> listDto =  service.findByUserName(expected);
-        assertNotNull(listDto);
-        assertFalse(listDto.isEmpty());
-        assertThat(listDto.size(), equalTo(1));
-        UserDTO userDTO = listDto.get(0);
-        assertThat(userDTO.getUserName(), anyOf(containsString(expected)));
     }
 
     @Test

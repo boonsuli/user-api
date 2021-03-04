@@ -13,12 +13,7 @@ public class DataTest {
         entity.setName("Anton");
         entity.setShortName("Krupicka");
         entity.setBirthday(new DateTime(1983, 8, 8, 0, 0).toDate());
-        entity.setUserName("akrupicka");
-        entity.setPassword("akrupicka");
         entity.setMail("anton.krupicka@gmail.com");
-        entity.setStreet("Boulder");
-        entity.setZipCode("80301");
-        entity.setCity("Colorado");
         entity.setCountry("USA");
         return entity;
     }
@@ -34,12 +29,7 @@ public class DataTest {
         dto.setName("Anton");
         dto.setShortName("Krupicka");
         dto.setBirthday(new DateTime(1983, 8, 8, 0, 0).toDate());
-        dto.setUserName("akrupicka");
-        dto.setPassword("akrupicka");
         dto.setMail("anton.krupicka@gmail.com");
-        dto.setStreet("Boulder");
-        dto.setZipCode("80301");
-        dto.setCity("Colorado");
         dto.setCountry("USA");
         return dto;
     }

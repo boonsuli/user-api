@@ -62,14 +62,14 @@ public class AppUnitTestDataConfigMemory {
     }
 
     //test IT rest assured : Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'javax.persistence.EntityManagerFactory' available: expected single matching bean but found 2: entityManagerFactory,sessionFactory
-    @Bean
+    /*@Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.trailerplan.model.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
-    }
+    }*/
 
 
     @Bean

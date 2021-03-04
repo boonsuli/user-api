@@ -8,6 +8,7 @@ import com.trailerplan.model.entity.UserEntity;
 import com.trailerplan.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/user")
+@Data
 public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
         implements ControllerInterface<UserDTO>, UserController {
 
@@ -34,7 +36,6 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
     private static final String URI_DOMAIN = "user";
 
     @Autowired
-    @Getter @Setter
     private UserService service;
 
     @Inject

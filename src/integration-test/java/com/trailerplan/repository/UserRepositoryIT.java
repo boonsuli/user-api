@@ -2,7 +2,6 @@ package com.trailerplan.repository;
 
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.common.TestHelper;
 import com.trailerplan.config.AppUnitTestDataConfigMemory;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
@@ -90,16 +89,5 @@ public class UserRepositoryIT implements InterfaceTest<UserEntity> {
         Optional<UserEntity> entityFinded = repository.findById(1L);
         assertTrue(entityFinded.isPresent());
         assertEquals(1L, entityFinded.get().getId().intValue());
-    }
-
-    @Test
-    public void shouldExtractDTO() {
-        try {
-            UserDTO dto = entitySaved.extractDTO();
-            TestHelper.shouldTestStandardDtoFields(dto, entitySaved);
-            TestHelper.shouldTestProductionFields(dto, entitySaved);
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            fail();
-        }
     }
 }

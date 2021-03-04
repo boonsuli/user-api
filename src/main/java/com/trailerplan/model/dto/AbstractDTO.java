@@ -24,7 +24,7 @@ public abstract class AbstractDTO<E extends AbstractEntity> implements Serializa
     @JsonIgnore
     protected ObjectMapper objectMapper = new ObjectMapper();
 
-    // Doser mapper pour l'extraction DTO
+    // Doser mapper for dto extraction
     @JsonIgnore
     protected Mapper dtoMapper = new DozerBeanMapper();
 

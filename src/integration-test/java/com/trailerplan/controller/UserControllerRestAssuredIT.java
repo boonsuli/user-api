@@ -3,7 +3,7 @@ package com.trailerplan.controller;
 
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppIntegrationTestConfig;
+import com.trailerplan.config.AppUnitTestConfig;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
 import com.trailerplan.service.UserService;
@@ -19,7 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
@@ -33,10 +33,10 @@ import static org.springframework.http.HttpStatus.OK;
 /**
  * This test class use spring framework testing feature in order to test the controller w
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @EnableAutoConfiguration
-@ContextConfiguration(classes = {AppIntegrationTestConfig.class})
+@ContextConfiguration(classes = {AppUnitTestConfig.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
 public class UserControllerRestAssuredIT implements InterfaceTest<UserEntity> {
 

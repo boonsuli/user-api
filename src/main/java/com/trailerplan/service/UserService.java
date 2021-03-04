@@ -10,7 +10,6 @@ import java.util.List;
 public interface UserService extends CommonService<UserEntity, UserDTO> {
 
     List<UserDTO> findByLastName(String lastName);
-    List<UserDTO> findByUserName(String userName);
     List<UserDTO> findByFirstName(String firstName);
     List<UserDTO> findByUserCountry(String country);
     List<UserDTO> findByBirthday(String birthday) throws ParseException;

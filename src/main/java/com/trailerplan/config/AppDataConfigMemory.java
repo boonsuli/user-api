@@ -98,7 +98,7 @@ public class AppDataConfigMemory {
         return factory.getObject();
     }
 
-    @Qualifier
+    /*@Qualifier
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -106,7 +106,7 @@ public class AppDataConfigMemory {
         sessionFactory.setPackagesToScan("com.trailerplan.model.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
-    }
+    }*/
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {

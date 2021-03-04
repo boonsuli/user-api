@@ -49,33 +49,5 @@ public abstract class AbstractEntity<D extends AbstractDTO> implements Serializa
     @JsonProperty("shortName")
     protected String shortName;
 
-    @JsonIgnore
-    @Transient
-    protected boolean updateSuccess;
-
-    @Transient
-    @JsonIgnore
-    public String getFullName() { return name + " " + shortName; }
-
-    @PrePersist
-    public void prePersistEntity () {
-        LOGGER.info("Save entity with fullName : " + getFullName() );
-    }
-
-    @PostPersist
-    public void postPersist() { if(id!=null) updateSuccess=true; }
-
-    @PreUpdate
-    public void preUpdateEntity() { LOGGER.info("Update entity with fullName : " + getFullName() ); }
-
-    @PostUpdate
-    public void postUpdateEntity() {}
-
-    @PreRemove
-    public void preRemoveEntity() { LOGGER.info("Remove entity with fullName : " + getFullName() ); }
-
-    @PostRemove
-    public void postRemoveEntity() {}
-
     public abstract D extractDTO() throws InvocationTargetException, IllegalAccessException;
 }

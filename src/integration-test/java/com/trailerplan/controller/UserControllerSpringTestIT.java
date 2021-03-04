@@ -1,6 +1,6 @@
 package com.trailerplan.controller;
 
-import com.trailerplan.common.ControllerTestHelper;
+import com.trailerplan.common.ControllerTestFactory;
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
 import com.trailerplan.config.AppUnitTestConfig;
@@ -69,8 +69,8 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
 
     @Test
     public void shouldSave() throws Exception {
-        MockHttpServletRequestBuilder servletRequest =
-            ControllerTestHelper.getPostServletRequest(entity2save.extractDTO(), controller.getUriDomain());
+        ControllerTestFactory factory =  new ControllerTestFactory();
+        MockHttpServletRequestBuilder servletRequest = factory.getPostServletRequest(entity2save.extractDTO(), controller.getUriDomain());
         ResultActions resultActions = this.mockMvc.perform(servletRequest);
 
         StatusResultMatchers status = status();
@@ -85,10 +85,10 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
     @Test
     public void shouldUpdate() throws Exception {
         UserDTO userDTO = entitySaved.extractDTO();
-
         userDTO.setName("XavierUpdate");
-        MockHttpServletRequestBuilder updateServletRequest =
-            ControllerTestHelper.getPutServletRequest(userDTO, controller.getUriDomain());
+
+        ControllerTestFactory factory =  new ControllerTestFactory();
+        MockHttpServletRequestBuilder updateServletRequest = factory.getPutServletRequest(userDTO, controller.getUriDomain());
         ResultActions resultUpdateActions = this.mockMvc.perform(updateServletRequest);
 
         StatusResultMatchers status = status();
@@ -101,8 +101,9 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
 
     @Test
     public void shouldDeleteById() throws Exception {
-        MockHttpServletRequestBuilder servletRequest =
-            ControllerTestHelper.getDeleteServletRequest(entitySaved.getId(), controller.getUriDomain());
+
+        ControllerTestFactory factory =  new ControllerTestFactory();
+        MockHttpServletRequestBuilder servletRequest = factory.getDeleteServletRequest(entitySaved.getId(), controller.getUriDomain());
         ResultActions resultActions = this.mockMvc.perform(servletRequest);
 
         StatusResultMatchers status = status();
@@ -114,8 +115,8 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
 
     @Test
     public void shouldFindById() throws Exception {
-        MockHttpServletRequestBuilder servletRequest =
-            ControllerTestHelper.getGetServletRequest(1L, controller.getUriDomain());
+        ControllerTestFactory factory =  new ControllerTestFactory();
+        MockHttpServletRequestBuilder servletRequest = factory.getGetServletRequest(1L, controller.getUriDomain());
         ResultActions resultActions = this.mockMvc.perform(servletRequest);
 
         StatusResultMatchers status = status();
@@ -129,8 +130,8 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
 
     @Test
     public void shouldFindAll() throws Exception {
-        MockHttpServletRequestBuilder servletRequest =
-            ControllerTestHelper.getGetServletRequest(controller.getUriDomain());
+        ControllerTestFactory factory =  new ControllerTestFactory();
+        MockHttpServletRequestBuilder servletRequest = factory.getGetServletRequest(controller.getUriDomain());
         ResultActions resultActions = this.mockMvc.perform(servletRequest);
 
         StatusResultMatchers status = status();

@@ -15,7 +15,7 @@ import java.util.Date;
         @AttributeOverride(name = "shortName", column = @Column(name = "LAST_NAME"))
 })
 @Data
-public class UserEntity extends AbstractProductionEntity<UserDTO> implements Serializable {
+public class UserEntity extends AbstractEntity<UserDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,28 +24,10 @@ public class UserEntity extends AbstractProductionEntity<UserDTO> implements Ser
     @Column(name = "BIRTHDAY")
     private Date birthday;
 
-    @Column(name = "AUTH_USERNAME")
-    private String userName;
-
-    @Column(name = "AUTH_PASSWORD")
-    private String password;
-
-    @Column(name = "AUTH_MAIL")
+    @Column(name = "MAIL")
     private String mail;
 
-    @Column(name = "AUTH_PHONE_NUMBER")
-    private String phoneNumber;
-
-    @Column(name = "ADR_STREET")
-    private String street;
-
-    @Column(name = "ADR_ZIPCODE")
-    private String zipCode;
-
-    @Column(name = "ADR_CITY")
-    private String city;
-
-    @Column(name = "ADR_COUNTRY")
+    @Column(name = "COUNTRY")
     private String country;
 
     @Override
