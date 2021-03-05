@@ -27,7 +27,7 @@ public class UserDTO extends AbstractDTO<UserEntity> implements Serializable {
     private String country;
 
     @Override
-    public UserEntity extractEntity() throws Exception { return dtoMapper.map(this, UserEntity.class); }
+    public UserEntity extractEntity() { return dtoMapper.map(this, UserEntity.class); }
 
     @Override
     public Class<UserEntity> getEntityClass() { return UserEntity.class; }

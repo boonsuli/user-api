@@ -98,32 +98,6 @@ public class AppDataConfigMemory {
         return factory.getObject();
     }
 
-    /*@Qualifier
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.trailerplan.model.entity");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
-    }*/
-
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
-
-    @Bean
-    public HibernatePersistenceProvider persistenceProvider() {
-        HibernatePersistenceProvider hibernatePersistenceProvider = new HibernatePersistenceProvider();
-        return hibernatePersistenceProvider;
-    }
-
     @Bean
     public Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -167,7 +141,7 @@ public class AppDataConfigMemory {
     }
 
     @Bean(name = "org.dozer.Mapper")
-    public DozerBeanMapperFactoryBean dozerBeanTest() throws IOException {
+    public DozerBeanMapperFactoryBean dozerBean() throws IOException {
         DozerBeanMapperFactoryBean dozerBean = new DozerBeanMapperFactoryBean();
         Resource[] resources = new PathMatchingResourcePatternResolver()
             .getResources("classpath*:dozer/**/*.dzr.xml");
