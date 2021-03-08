@@ -2,7 +2,7 @@ package com.trailerplan.service;
 
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppUnitTestDataConfigMemory;
+import com.trailerplan.config.AppTestDataConfigMemory;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
 import org.hibernate.SessionFactory;
@@ -16,7 +16,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppUnitTestDataConfigMemory.class})
+@ContextConfiguration(classes = {AppTestDataConfigMemory.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
 public class UserServiceIT implements InterfaceTest<UserEntity> {
 

@@ -14,6 +14,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -35,7 +36,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"com.trailerplan.repository", "com.trailerplan.service", "com.trailerplan.controller"})
 @EnableJpaRepositories(basePackages = {"com.trailerplan.repository"}, entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
-public class AppIntegrationTestDataConfigMemory {
+public class AppTestDataConfigMemory {
 
     @Inject
     private Environment environment;
@@ -60,28 +61,17 @@ public class AppIntegrationTestDataConfigMemory {
         return entityManagerFactoryBean;
     }
 
-    //test IT rest assured : Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'javax.persistence.EntityManagerFactory' available: expected single matching bean but found 2: entityManagerFactory,sessionFactory
-    /*@Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.trailerplan.model.entity");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
-    }*/
-
-
     @Bean
     @Primary
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder
-            .generateUniqueName(true)
-            .setType(EmbeddedDatabaseType.HSQL)
-            .setScriptEncoding("UTF-8")
-            .ignoreFailedDrops(true)
-            .addScript("database/hsql/hsql-schema.sql")
-            .build();
+                .generateUniqueName(true)
+                .setType(EmbeddedDatabaseType.HSQL)
+                .setScriptEncoding("UTF-8")
+                .ignoreFailedDrops(true)
+                .addScript("database/hsql/hsql-schema.sql")
+                .build();
     }
 
     @Bean
@@ -94,7 +84,6 @@ public class AppIntegrationTestDataConfigMemory {
         databasePopulator.addScript(new ClassPathResource("database/hsql/hsql-data.sql"));
         return dataSourceInitializer;
     }
-
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -132,7 +121,6 @@ public class AppIntegrationTestDataConfigMemory {
         return properties;
     }
 
-
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -142,11 +130,8 @@ public class AppIntegrationTestDataConfigMemory {
         return vendorAdapter;
     }
 
-
     @Bean
     public HibernateExceptionTranslator hibernateExceptionTranslator() {
         return new HibernateExceptionTranslator();
     }
-
-
 }

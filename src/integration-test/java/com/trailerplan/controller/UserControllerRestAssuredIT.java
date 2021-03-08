@@ -3,7 +3,7 @@ package com.trailerplan.controller;
 
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppUnitTestConfig;
+import com.trailerplan.config.AppTestConfig;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
 import com.trailerplan.service.UserService;
@@ -36,7 +36,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @EnableAutoConfiguration
-@ContextConfiguration(classes = {AppUnitTestConfig.class})
+@ContextConfiguration(classes = {AppTestConfig.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
 public class UserControllerRestAssuredIT implements InterfaceTest<UserEntity> {
 

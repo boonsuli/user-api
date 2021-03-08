@@ -8,7 +8,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
@@ -25,12 +24,12 @@ import java.util.Collections;
 
 @Configuration
 @WebAppConfiguration
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = AppIntegrationTestDataConfigMemory.class)
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = AppTestDataConfigMemory.class)
 @ComponentScan(basePackages = {"com.trailerplan.controller", "com.trailerplan.service", "com.trailerplan.repository"})
-@Import({AppIntegrationTestDataConfigMemory.class})
+@Import({AppTestDataConfigMemory.class})
 @EnableWebMvc
 @EnableSwagger2
-public class AppIntegrationTestConfig {
+public class AppTestConfig {
 
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
@@ -46,6 +45,30 @@ public class AppIntegrationTestConfig {
         final LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
         factory.setValidationMessageSource(messageSource());
         return factory;
+    }
+
+    @Bean
+    public Docket api() {
+
+        return new Docket(DocumentationType.SWAGGER_2)
+            .groupName("trailerplan-api")
+            .select()
+            .apis(RequestHandlerSelectors.any())
+            .paths(PathSelectors.any())
+            .build()
+            .apiInfo(getApiInfo());
+    }
+
+    private ApiInfo getApiInfo() {
+        return new ApiInfo(
+            "trailerplan-api",
+            "trailerplan-desc",
+            "trailerplan-version",
+            "terms of service",
+            new Contact("Buon Sui", "www.websitetodo.com", "boonsuli@gmail.com"),
+            "trailerplan_license",
+            "api license url",
+            Collections.emptyList());
     }
 }
 

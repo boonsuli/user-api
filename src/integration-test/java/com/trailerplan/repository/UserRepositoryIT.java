@@ -2,8 +2,7 @@ package com.trailerplan.repository;
 
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppUnitTestDataConfigMemory;
-import com.trailerplan.model.dto.UserDTO;
+import com.trailerplan.config.AppTestDataConfigMemory;
 import com.trailerplan.model.entity.UserEntity;
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +21,7 @@ import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppUnitTestDataConfigMemory.class})
+@ContextConfiguration(classes = {AppTestDataConfigMemory.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
 public class UserRepositoryIT implements InterfaceTest<UserEntity> {
 

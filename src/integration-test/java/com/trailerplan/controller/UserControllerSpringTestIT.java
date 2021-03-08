@@ -3,7 +3,7 @@ package com.trailerplan.controller;
 import com.trailerplan.common.ControllerTestFactory;
 import com.trailerplan.common.DataTest;
 import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppUnitTestConfig;
+import com.trailerplan.config.AppTestConfig;
 import com.trailerplan.controller.impl.UserControllerImpl;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppUnitTestConfig.class})
+@ContextConfiguration(classes = {AppTestConfig.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
 public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
 
