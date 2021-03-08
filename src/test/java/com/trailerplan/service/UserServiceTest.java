@@ -114,16 +114,22 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
     @Test
     public void shouldDeleteById() throws Exception {
         Long expected = 1L;
-        UserEntity entity = DataTest.buildUserEntity();
-        entity.setId(expected);
-        when(repositoryMock.findById(anyLong())).thenReturn(Optional.of(entity));
-
+        UserEntity entityDeleted = DataTest.buildUserEntity();
+        entityDeleted.setId(expected);
+        when(repositoryMock.findById(anyLong())).thenReturn(Optional.of(entityDeleted), Optional.of(entityDeleted), Optional.empty());
         doNothing().when(repositoryMock).deleteById(anyLong());
         service.setRepository(repositoryMock);
 
-        UserDTO userDtoReturned = service.deleteById(expected);
-        assertNotNull(userDtoReturned);
-        assertNotNull(userDtoReturned.getId());
+        Optional<UserDTO> userDtoFinded = service.findById(entityDeleted.getId());
+        assertTrue(userDtoFinded.isPresent());
+        assertEquals(entityDeleted.getId(), userDtoFinded.get().getId());
+
+        UserDTO userDtoDeleted = service.deleteById(expected);
+        assertNotNull(userDtoDeleted);
+        assertEquals(userDtoFinded.get().getId(), userDtoDeleted.getId());
+
+        Optional<UserDTO> userDtoNotExist = service.findById(entityDeleted.getId());
+        assertFalse(userDtoNotExist.isPresent());
     }
 
     @Test
