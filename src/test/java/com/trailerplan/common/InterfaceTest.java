@@ -1,6 +1,6 @@
 package com.trailerplan.common;
 
-public interface InterfaceTest<E> {
+    public interface InterfaceTest<E> {
 
     void init() throws Exception;
     void cleanup() throws Exception;

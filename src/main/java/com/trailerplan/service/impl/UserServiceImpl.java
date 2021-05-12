@@ -1,14 +1,14 @@
 package com.trailerplan.service.impl;
 
 
-import com.trailerplan.model.dto.UserDTO;
-import com.trailerplan.model.entity.AbstractEntity_;
-import com.trailerplan.model.entity.UserEntity;
-import com.trailerplan.model.entity.UserEntity_;
-import com.trailerplan.repository.UserRepository;
-import com.trailerplan.service.UserService;
-import com.trailerplan.service.common.AbstractService;
-import org.hibernate.SessionFactory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.Predicate;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.trailerplan.model.dto.UserDTO;
+import com.trailerplan.model.entity.AbstractEntity_;
+import com.trailerplan.model.entity.UserEntity;
+import com.trailerplan.model.entity.UserEntity_;
+import com.trailerplan.repository.UserRepository;
+import com.trailerplan.service.UserService;
+import com.trailerplan.service.common.AbstractService;
 
 @Service("userService")
 @Transactional
@@ -75,7 +76,6 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
         super.initSessionFromEntityManager();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dateParse = sdf.parse(birthday);
-        ParameterExpression<Date> birthdayParameter = super.criteriaBuilder.parameter(Date.class);
         Predicate predicate = super.criteriaBuilder.equal(rootEntity.get(UserEntity_.BIRTHDAY), dateParse);
         return super.findAllByPredicate(predicate);
     }
@@ -88,5 +88,4 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
             criteriaBuilder.like(rootCount.get(UserEntity_.COUNTRY),  "%"+country+"%"));
         return super.countAllByPredicate(predicate);
     }
-
 }
