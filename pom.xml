@@ -18,19 +18,17 @@
 		<project.root.name>trailerplan</project.root.name>
 		<java.version>11</java.version>
 
-		<hibernate.core.version>5.4.12.Final</hibernate.core.version>
-		<hibernate.entitymanager.version>5.4.12.Final</hibernate.entitymanager.version>
-		<hibernate.jpamodelgen.version>5.4.12.Final</hibernate.jpamodelgen.version>
-		<hibernate.ehcache.version>5.4.12.Final</hibernate.ehcache.version>
-		<hibernate-validator.version>6.0.18.Final</hibernate-validator.version>
-		<hibernate-validator-cdi.version>6.0.18.Final</hibernate-validator-cdi.version>
+		<hibernate.core.version>5.3.15.Final</hibernate.core.version>
+		<hibernate.entitymanager.version>5.3.15.Final</hibernate.entitymanager.version>
+		<hibernate.jpamodelgen.version>5.3.15.Final</hibernate.jpamodelgen.version>
+		<hibernate.ehcache.version>5.3.15.Final</hibernate.ehcache.version>
 		<hsql.version>2.4.1</hsql.version>
 		<postgresql.driver>42.2.8</postgresql.driver>
 
 		<javax.validation.version>2.0.1.Final</javax.validation.version>
 		<dozer.version>5.5.1</dozer.version>
 		<joda-time.version>2.10.5</joda-time.version>
-		<guava.version>26.0-jre</guava.version>
+		<guava.version>20.0</guava.version>
 		<hamcrest-date.version>2.0.7</hamcrest-date.version>
 		<rest-assured.version>4.2.0</rest-assured.version>
 		<jackson.version>2.10.0</jackson.version>
@@ -38,7 +36,6 @@
 		<commons.lang3.version>3.8.1</commons.lang3.version>
 		<commons.lang.version>2.6</commons.lang.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-		<httpcomponent-httpclient.version>4.5.8</httpcomponent-httpclient.version>
 		<docker.image.name>${project.root.name}-${project.artifactId}-api</docker.image.name>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
@@ -436,13 +433,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator-cdi</artifactId>
-			<version>${hibernate-validator-cdi.version}</version>
-		</dependency>
 
-			<!-- database -->
+		<!-- database -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -556,6 +548,12 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${springfox-swagger2.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -581,11 +579,6 @@
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-failsafe-plugin</artifactId>
 			<version>${maven-failsafe-plugin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpcomponent-httpclient.version}</version>
 		</dependency>
 	</dependencies>
 
