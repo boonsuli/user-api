@@ -61,15 +61,16 @@
             {"id":1,"name":"Kilian","shortName":"Jornet","version":1,"creationDate":"2020-01-20@22:00:00","modificationDate":"2020-01-20@22:00:00","userName":"kjornet","password":"kjornet","mail":"kilian.jornet@themail.com","birthday":"1987-10-26@23:00:00","street":"1 placa Del Sol","zipCode":"17600","city":"Figueras","country":"Espagne"}
             ```
         - in a browser : http://localhost:8080/trailerplan/swagger-ui.html, the swagger api
+        
     - run integration test : 
         ```
         mvn clean verify -P integration-test
         ```
-        only the integration tests are running, the *IT.java in repository, service and controller layer    
+        only the integration tests are running, the *IT.java in repository, service and controller layer
+        
     - run the docker images with : 
       ```
       docker run --rm --name trailerplan-user-api -p 8080:8080 trailerplan-user-api
       ```
-      then all the feature are available from the docker images ;-)
+      then all the feature are available from the docker images
 
-    - enjoy ;-)

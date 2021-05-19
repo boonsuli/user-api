@@ -40,9 +40,9 @@ public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implem
     }
 
     @Autowired
-    private UserRepository userRepository;
-    public JpaRepository<UserEntity, Long> getRepository() { return userRepository; }
     public void setRepository(JpaRepository<UserEntity, Long> repository) { this.userRepository = (UserRepository) repository; }
+    public JpaRepository<UserEntity, Long> getRepository() { return userRepository; }
+    private UserRepository userRepository;
 
     @Override
     public List<UserDTO> findByLastName(String lastName) {

@@ -12,7 +12,6 @@ import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,6 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
     private static final Logger LOG = LoggerFactory.getLogger(UserControllerImpl.class);
     private static final String URI_DOMAIN = "user";
 
-    @Autowired
     private UserService service;
 
     @Inject
@@ -53,7 +51,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE,
         headers = {"Content-type=app/json", "Accept=app/json"} )
     @ResponseBody
-    public ResponseEntity<UserDTO> create (@Valid @RequestBody final UserDTO dto2create) {
+    public ResponseEntity<UserDTO> create(@Valid @RequestBody final UserDTO dto2create) {
         try {
             UserDTO dtoCreated = service.saveOrUpdate(dto2create);
             return ResponseEntity.status(HttpStatus.CREATED).body(dtoCreated);
