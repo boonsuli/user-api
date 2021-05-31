@@ -1,29 +1,26 @@
 package com.trailerplan.model.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.trailerplan.model.dto.AbstractDTO;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
+import com.trailerplan.model.dto.AbstractDTO;
 
 @MappedSuperclass
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 @Data
+@Slf4j
+@NoArgsConstructor
 public abstract class AbstractEntity<D extends AbstractDTO> implements Serializable {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractEntity.class);
-
-    public AbstractEntity() {}
 
     public AbstractEntity(String name, String shortName) {
         this.name=name;

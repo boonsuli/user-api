@@ -9,16 +9,15 @@ import javax.validation.Valid;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.trailerplan.common.AbstractController;
-import com.trailerplan.common.ControllerInterface;
+import com.trailerplan.controller.common.AbstractController;
+import com.trailerplan.controller.common.ControllerInterface;
 import com.trailerplan.controller.UserController;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
@@ -29,10 +28,10 @@ import com.trailerplan.service.UserService;
 @RestController
 @RequestMapping(value = "/api/user")
 @Data
+@Slf4j
 public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
         implements ControllerInterface<UserDTO>, UserController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserControllerImpl.class);
     private static final String URI_DOMAIN = "user";
 
     private UserService service;
@@ -56,7 +55,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
             UserDTO dtoCreated = service.saveOrUpdate(dto2create);
             return ResponseEntity.status(HttpStatus.CREATED).body(dtoCreated);
         } catch(Exception e) {
-            LOG.error(e.getMessage());
+            log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -69,7 +68,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
             UserDTO dtoUpdated = service.saveOrUpdate(dto2update);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(dtoUpdated);
         } catch (Exception e) {
-            LOG.error(e.getMessage());
+            log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -86,7 +85,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage());
+            log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -100,7 +99,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
                         .map(userDTO -> ResponseEntity.ok().body(userDTO))
                         .orElseGet( () -> ResponseEntity.status(HttpStatus.NO_CONTENT).build());
         } catch (Exception e) {
-            LOG.error(e.getMessage());
+            log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

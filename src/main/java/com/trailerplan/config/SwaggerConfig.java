@@ -1,8 +1,11 @@
 package com.trailerplan.config;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,23 +24,17 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * http://localhost:8080/trailerplan/swagger-ui.html
  */
 @Configuration
 @EnableSwagger2
 @ComponentScan(basePackages = {"com.trailerplan.controller", "com.trailerplan.service", "com.trailerplan.repository"})
+@Slf4j
 public class SwaggerConfig {
-
-    private static final Logger LOG = LoggerFactory.getLogger(SwaggerConfig.class);
 
     private static final String SWAGGER_DOC_ENTRYPOINT = "/api-docs";
     private static final String SWAGGER_UI_HOME = "/webjars/swagger-ui/2.2.10/index.html";
-
 
     @Bean
     public WebMvcConfigurer configurer() {

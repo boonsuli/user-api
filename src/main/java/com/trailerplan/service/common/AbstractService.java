@@ -1,34 +1,35 @@
 package com.trailerplan.service.common;
 
-import com.trailerplan.model.dto.AbstractDTO;
-import com.trailerplan.model.entity.AbstractEntity;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.trailerplan.model.dto.AbstractDTO;
+import com.trailerplan.model.entity.AbstractEntity;
 
 /**
  * @param <E> entity
  * @param <D> dto
  */
 @Component
+@Slf4j
+@NoArgsConstructor
 public abstract class AbstractService<E extends AbstractEntity, D extends AbstractDTO> {
-
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractService.class);
 
     protected Session session;
     protected CriteriaBuilder criteriaBuilder;
@@ -41,8 +42,6 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
     protected CriteriaQuery<Long> criteriaCountQuery;
     protected Root<E> rootCount;
 
-    public AbstractService() {}
-
     public AbstractService(EntityManager entityManager, JpaRepository<E, Long> repository, Class<E> entityClass) {
         this.entityManager = entityManager;
         this.entityClass = entityClass;
@@ -51,7 +50,6 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
 
     public abstract JpaRepository<E, Long> getRepository();
     public abstract void setRepository(JpaRepository<E, Long> repository);
-
 
     @Transactional(readOnly = true)
     public List<Optional<D>> findAll() {
@@ -69,7 +67,7 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
     public Optional<D> findById(Long id) throws InvocationTargetException, IllegalAccessException {
         Optional<E> entity = getRepository().findById(id);
         if(entity.isPresent()) {
-            LOG.info(getRepository().getClass()+" findById entity id : "+id);
+            log.info(getRepository().getClass()+" findById entity id : "+id);
             return Optional.of((D)entity.get().extractDTO());
         } else {
             return Optional.empty();
@@ -78,18 +76,18 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
 
     @Transactional(readOnly = false)
     public E saveOrUpdate(E entity2save) throws Exception {
-        LOG.info("Saving : "+ entity2save.toString());
-        LOG.debug("repository :"+ getRepository());
-        LOG.debug("entity :"+entity2save.getClass());
+        log.info("Saving : "+ entity2save.toString());
+        log.debug("repository :"+ getRepository());
+        log.debug("entity :"+entity2save.getClass());
         E entitySaved = getRepository().save(entity2save);
         return entitySaved;
     }
 
     @Transactional(readOnly = false)
     public D saveOrUpdate(D dto2save) throws Exception {
-        LOG.info("Saving : " + dto2save.toString());
-        LOG.debug("repository :"+ getRepository());
-        LOG.debug("dto :" + dto2save.getClass());
+        log.info("Saving : " + dto2save.toString());
+        log.debug("repository :"+ getRepository());
+        log.debug("dto :" + dto2save.getClass());
         E entity2save = (E)dto2save.extractEntity();
         E entitySaved = getRepository().save(entity2save);
         return (D)entitySaved.extractDTO();
@@ -100,7 +98,7 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
         Optional<E> entity = getRepository().findById(id);
         if(entity.isPresent()) {
             getRepository().deleteById(id);
-            LOG.info(getRepository().getClass()+" deleteById entity id : "+id);
+            log.info(getRepository().getClass()+" deleteById entity id : "+id);
             return (D)entity.get().extractDTO();
         } else {
             return null;
@@ -109,9 +107,9 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
 
     @Transactional(readOnly = false)
     public void deleteByEntity(E entity2Delete) {
-        LOG.info("Delete : "+ entity2Delete.toString());
-        LOG.debug("repository :"+ getRepository());
-        LOG.debug("entity :"+entity2Delete);
+        log.info("Delete : "+ entity2Delete.toString());
+        log.debug("repository :"+ getRepository());
+        log.debug("entity :"+entity2Delete);
         getRepository().delete(entity2Delete);
     }
 
@@ -133,7 +131,7 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
                 try {
                     dto = (D) item.extractDTO();
                 } catch (InvocationTargetException | IllegalAccessException e) {
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
                 return dto;
             })
@@ -167,13 +165,13 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
                 try {
                     return Optional.of((D)entity.extractDTO());
                 } catch (IllegalAccessException | InvocationTargetException e1) {
-                    LOG.error(e1.getMessage(), e1);
+                    log.error(e1.getMessage(), e1);
                     return Optional.ofNullable((D)null);
                 }
             }).collect(Collectors.toList());
 
         } else {
-            LOG.info("entities list is null or empty");
+            log.info("entities list is null or empty");
         }
         return listDto;
     }

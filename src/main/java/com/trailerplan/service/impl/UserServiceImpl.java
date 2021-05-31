@@ -9,8 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.Predicate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,9 +29,8 @@ import com.trailerplan.service.common.AbstractService;
 @Transactional
 @EnableJpaRepositories("com.trailerplan.repository")
 @EntityScan(basePackages = {"com.trailerplan.model.entity"})
+@Slf4j
 public class UserServiceImpl extends AbstractService<UserEntity, UserDTO> implements UserService {
-
-    public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Inject
     public UserServiceImpl(EntityManager entityManager, JpaRepository<UserEntity, Long> repository) {
