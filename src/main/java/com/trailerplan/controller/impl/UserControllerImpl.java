@@ -48,7 +48,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
             notes = "Multiple status values can be provided with comma separated strings",
             responseContainer = "List")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE,
-        headers = {"Content-type=app/json", "Accept=app/json"} )
+        headers = {"Content-type=application/json", "Accept=application/json"} )
     @ResponseBody
     public ResponseEntity<UserDTO> create(@Valid @RequestBody final UserDTO dto2create) {
         try {
@@ -61,7 +61,7 @@ public class UserControllerImpl extends AbstractController<UserEntity, UserDTO>
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE,
-        headers = {"Content-type=app/json", "Accept=app/json"} )
+        headers = {"Content-type=application/json", "Accept=application/json"} )
     @ResponseBody
     public ResponseEntity<UserDTO> update(@Valid @RequestBody final UserDTO dto2update) {
         try {
