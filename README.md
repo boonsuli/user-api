@@ -1,25 +1,26 @@
+[![Spring Boot Version](https://img.shields.io/badge/springboot-2.1.13-brightgreen.svg)](https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/)
+[![Spring Boot Version](https://img.shields.io/badge/hibernate-5.4.12-brightgreen.svg)](https://hibernate.org/orm/releases/5.4/)
+[![Spring Boot Version](https://img.shields.io/badge/hibernate_validator-6.0.18-brightgreen.svg)](https://hibernate.org/validator/releases/6.0/)
+[![Spring Boot Version](https://img.shields.io/badge/javax_validattion-2.0.1-brightgreen.svg)](https://beanvalidation.org/)
+[![Spring Boot Version](https://img.shields.io/badge/hsql-2.4.1-brightgreen.svg)](https://hsql.org)
+[![Spring Boot Version](https://img.shields.io/badge/maven_surefire_plugin-3.0.0.M4-brightgreen.svg)](https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html)
+[![Spring Boot Version](https://img.shields.io/badge/maven_failsafe_plugin-3.0.0.M4-brightgreen.svg)](https://maven.apache.org/surefire/maven-failsafe-plugin/integration-test-mojo.html)
+[![Spring Boot Version](https://img.shields.io/badge/dockerfile_maven_pluging-1.4.13-brightgreen.svg)](https://github.com/spotify/dockerfile-maven)
+[![Spring Boot Version](https://img.shields.io/badge/commons_lang3-3.8.1-brightgreen.svg)](https://commons.apache.org/proper/commons-lang/)
+[![Spring Boot Version](https://img.shields.io/badge/commons_lang-2.6-brightgreen.svg)](http://commons.apache.org/proper/commons-lang/)
+[![Spring Boot Version](https://img.shields.io/badge/dozer-5.5.1-brightgreen.svg)](https://dozer.sourceforge.net/)
+[![Spring Boot Version](https://img.shields.io/badge/joda_time-2.10.05-brightgreen.svg)](https://www.joda.org/joda-time/)
+[![Spring Boot Version](https://img.shields.io/badge/jackson-2.10.0-brightgreen.svg)](https://github.com/FasterXML/jackson)
+[![Spring Boot Version](https://img.shields.io/badge/guava-26.0_jre-brightgreen.svg)](https://github.com/google/guava/wiki/CollectionUtilitiesExplained)
+[![Spring Boot Version](https://img.shields.io/badge/hamcrest-1.3-brightgreen.svg)](https://hamcrest.org/JavaHamcrest/)
+[![Spring Boot Version](https://img.shields.io/badge/swagger-2.9.2-brightgreen.svg)](https://swagger.io)
+[![Spring Boot Version](https://img.shields.io/badge/docker-18.06.1_ce-brightgreen.svg)](https://www.docker.com)
+
+
 # Getting Started
 
-- This application is an example of rest api with spring boot and docker. 
-    - version of the components : 
-        - [spring boot 2.1.13.Final](https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/)
-        - [hibernate : 5.4.12.Final](https://hibernate.org/orm/releases/5.4/)
-        - [hibernate-validator : 6.0.18.Final](https://hibernate.org/validator/releases/6.0/)
-        - [javax-validation : 2.0.1.Final](https://beanvalidation.org/)
-        - [hsql : 2.4.1](http://hsqldb.org/)
-        - [maven-surefire-plugin : 3.0.0.M4](https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html)
-        - [maven-failsafe-plugin : 3.0.0-M4](https://maven.apache.org/surefire/maven-failsafe-plugin/integration-test-mojo.html)
-        - [dockerfile-maven-plugin : 1.4.13](https://github.com/spotify/dockerfile-maven)
-        - [commons-lang3 : 3.8.1](http://commons.apache.org/proper/commons-lang/)
-        - [commons-lang : 2.6](http://commons.apache.org/proper/commons-lang/)
-        - [dozer : 5.5.1](http://dozer.sourceforge.net/)
-        - [joda-time : 2.10.5](https://www.joda.org/joda-time/)
-        - [jackson : 2.10.0](https://github.com/FasterXML/jackson)
-        - [guava : 26.0-jre](https://github.com/google/guava/wiki/CollectionUtilitiesExplained)
-        - [hamcrest : 1.3](http://hamcrest.org/JavaHamcrest/)
-        - [swagger : 2.9.2](https://swagger.io/)
-        - [docker 18.06.1-ce](https://www.docker.com/)
 
+- This application is an example of rest api with spring boot and docker. 
     - build on :
         - OS : [Linux Mint v19](https://www.linuxmint.com)
         - JDK : [open jdk 11.0.4](https://openjdk.java.net/projects/jdk/11/)
