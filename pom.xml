@@ -136,7 +136,7 @@
 						</executions>
 						<configuration>
 							<repository>${docker.image.name}</repository>
-							<dockerfile>${project.basedir}/src/docker/Dockerfile</dockerfile>
+							<dockerfile>${project.basedir}/container/app_java/Dockerfile</dockerfile>
 							<tag>latest</tag>
 							<buildArgs>
 								<jarFile>${docker.image.name}.jar</jarFile>
