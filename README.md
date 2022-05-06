@@ -22,13 +22,16 @@
 
 # Getting Started
 
+## Abstract
+This application is an example of REST api with a containerized spring boot app in 
+  a docker image and deploy in a microk8s cluster. 
 
-- This application is an example of rest api with spring boot and docker. 
-    - build on :
-        - OS : [Linux Mint v19](https://www.linuxmint.com)
-        - JDK : [open jdk 11.0.4](https://openjdk.java.net/projects/jdk/11/)
+  It is build on : \
+    - OS : [Linux Mint v19](https://www.linuxmint.com) \
+    - JDK : [open jdk 11.0.4](https://openjdk.java.net/projects/jdk/11/)
 
-- features : 
+
+## Features : 
     - rest API for a user : GET, POST, PUT, DELETE
     - unit test for the service layer
     - integration test run with maven failsafe plugin
@@ -51,7 +54,7 @@
         - size : 358 mo in my environment 
     - deploy to a local microk8s
         
-
+## Building stage
 - checkout the source
 - build with : 
     ```
