@@ -1,4 +1,4 @@
-FROM openjdk:11.0.6-jre
+FROM openjdk:11.0-jre
 MAINTAINER Buon SUI <boonsuli@gmail.com>
 VOLUME /tmp
 RUN mkdir -p /app/
