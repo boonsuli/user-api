@@ -18,6 +18,7 @@
 		<project.root.name>trailerplan</project.root.name>
 		<java.version>11</java.version>
 
+		<springboot.starter.undertow>2.5.14</springboot.starter.undertow>
 		<hibernate.core.version>5.4.24.Final</hibernate.core.version>
 		<hibernate.entitymanager.version>5.4.24.Final</hibernate.entitymanager.version>
 		<hibernate.jpamodelgen.version>5.4.24.Final</hibernate.jpamodelgen.version>
@@ -334,6 +335,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
+			<version>${springboot.starter.undertow}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
