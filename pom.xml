@@ -18,7 +18,7 @@
 		<project.root.name>trailerplan</project.root.name>
 		<java.version>11</java.version>
 
-		<springboot.starter.undertow>2.5.14</springboot.starter.undertow>
+		<springboot.starter.undertow>2.6.6</springboot.starter.undertow>
 		<hibernate.core.version>5.4.24.Final</hibernate.core.version>
 		<hibernate.entitymanager.version>5.4.24.Final</hibernate.entitymanager.version>
 		<hibernate.jpamodelgen.version>5.4.24.Final</hibernate.jpamodelgen.version>
@@ -117,10 +117,7 @@
 								</goals>
 								<configuration>
 									<target>
-										<copy
-											file="${project.build.directory}/${project.artifactId}-${project.version}.jar"
-											tofile="${project.build.directory}/${docker.image.name}.jar"
-										/>
+										<copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar" tofile="${project.build.directory}/${docker.image.name}.jar"/>
 									</target>
 								</configuration>
 							</execution>
