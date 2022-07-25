@@ -47,7 +47,7 @@ This application is an example of REST api with a containerized spring boot app 
     - search entity with jpa criteria api
     - db schema from hsql-schema.sql and the data hsql-data.sql 
     - build docker images :
-        - pull : openjdk:11.0.6-jre, first. We need just the jre
+        - pull : openjdk:11.0-slim-bullseye
         - with docker-maven-plugin from spotify by profile docker-spotify
         - push to local registry
         - using docker file src/docker/Dockerfile

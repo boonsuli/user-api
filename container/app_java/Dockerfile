@@ -1,4 +1,4 @@
-FROM openjdk:11.0.15-jre
+FROM openjdk:11.0-slim-bullseye
 MAINTAINER Buon SUI <boonsuli@gmail.com>
 VOLUME /tmp
 RUN mkdir -p /app/
