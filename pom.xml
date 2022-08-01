@@ -19,6 +19,9 @@
 		<java.version>11</java.version>
 
 		<springboot.starter.undertow>2.5.14</springboot.starter.undertow>
+		<springboot.starter.web.version>2.5.12</springboot.starter.web.version>
+		<springboot.starter.data.jpa.version>2.5.13</springboot.starter.data.jpa.version>
+		<springboot.starter.data.rest.version>2.6.7</springboot.starter.data.rest.version>
 		<hibernate.core.version>5.4.24.Final</hibernate.core.version>
 		<hibernate.entitymanager.version>5.4.24.Final</hibernate.entitymanager.version>
 		<hibernate.jpamodelgen.version>5.4.24.Final</hibernate.jpamodelgen.version>
@@ -300,6 +303,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<version>${springboot.starter.data.rest.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -314,10 +318,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${springboot.starter.data.jpa.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${springboot.starter.web.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
