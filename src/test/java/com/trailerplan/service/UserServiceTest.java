@@ -1,43 +1,43 @@
 package com.trailerplan.service;
 
 
-import com.google.common.collect.Lists;
-import com.trailerplan.common.DataTest;
-import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.model.dto.UserDTO;
-import com.trailerplan.model.entity.UserEntity;
-import com.trailerplan.repository.UserRepository;
-import com.trailerplan.service.impl.UserServiceImpl;
-import org.exparity.hamcrest.date.DateMatchers;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import com.google.common.collect.Lists;
+import org.exparity.hamcrest.date.DateMatchers;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.trailerplan.common.DataTest;
+import com.trailerplan.common.InterfaceTest;
+import com.trailerplan.model.dto.UserDTO;
+import com.trailerplan.model.entity.UserEntity;
+import com.trailerplan.repository.UserRepository;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest implements InterfaceTest<UserEntity> {
 
     @InjectMocks
@@ -73,21 +73,21 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
     @Mock
     private Query<Long> queryCountMock;
 
-    @Before
+    @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
 
-        when(entityManagerMock.unwrap(Session.class)).thenReturn(sessionMock);
-        when(entityManagerMock.getCriteriaBuilder()).thenReturn(criteriaBuilderMock);
-        when(criteriaBuilderMock.createQuery(UserEntity.class)).thenReturn(criteriaEntityQueryMock);
-        when(criteriaEntityQueryMock.from(UserEntity.class)).thenReturn(rootEntityMock);
-        when(criteriaBuilderMock.createQuery(Long.class)).thenReturn(criteriaCountQueryMock);
-        when(criteriaCountQueryMock.from(UserEntity.class)).thenReturn(rootCountMock);
+//        when(entityManagerMock.unwrap(Session.class)).thenReturn(sessionMock);
+//        when(entityManagerMock.getCriteriaBuilder()).thenReturn(criteriaBuilderMock);
+//        when(criteriaBuilderMock.createQuery(UserEntity.class)).thenReturn(criteriaEntityQueryMock);
+//        when(criteriaEntityQueryMock.from(UserEntity.class)).thenReturn(rootEntityMock);
+//        when(criteriaBuilderMock.createQuery(Long.class)).thenReturn(criteriaCountQueryMock);
+//        when(criteriaCountQueryMock.from(UserEntity.class)).thenReturn(rootCountMock);
 
         service = new UserServiceImpl(entityManagerMock, repositoryMock);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws Exception {
     }
 
@@ -101,8 +101,8 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         service.setRepository(repositoryMock);
 
         UserDTO dto = service.saveOrUpdate(entity.extractDTO());
-        assertNotNull(dto);
-        assertNotNull(dto.getId());
+        Assertions.assertNotNull(dto);
+        Assertions.assertNotNull(dto.getId());
         assertThat(dto.getId(), equalTo(expected));
     }
 
@@ -121,15 +121,16 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         service.setRepository(repositoryMock);
 
         Optional<UserDTO> userDtoFinded = service.findById(entityDeleted.getId());
-        assertTrue(userDtoFinded.isPresent());
-        assertEquals(entityDeleted.getId(), userDtoFinded.get().getId());
+        Assertions.assertNotNull(userDtoFinded);
+        Assertions.assertTrue(userDtoFinded.isPresent());
+        Assertions.assertEquals(entityDeleted.getId(), userDtoFinded.get().getId());
 
         UserDTO userDtoDeleted = service.deleteById(expected);
-        assertNotNull(userDtoDeleted);
-        assertEquals(userDtoFinded.get().getId(), userDtoDeleted.getId());
+        Assertions.assertNotNull(userDtoDeleted);
+        Assertions.assertEquals(userDtoFinded.get().getId(), userDtoDeleted.getId());
 
         Optional<UserDTO> userDtoNotExist = service.findById(entityDeleted.getId());
-        assertFalse(userDtoNotExist.isPresent());
+        Assertions.assertFalse(userDtoNotExist.isPresent());
     }
 
     @Test
@@ -139,8 +140,8 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         when(repositoryMock.findAll()).thenReturn(entities);
 
         List<Optional<UserDTO>> listReturned = service.findAll();
-        assertNotNull(listReturned);
-        assertFalse(listReturned.isEmpty());
+        Assertions.assertNotNull(listReturned);
+        Assertions.assertFalse(listReturned.isEmpty());
         assertThat(listReturned.size(), equalTo(1));
     }
 
@@ -152,8 +153,10 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         when(repositoryMock.findById(anyLong())).thenReturn(Optional.of(entity));
 
         Optional<UserDTO> optionalDto = service.findById(expected);
-        assertTrue(optionalDto.isPresent());
+        Assertions.assertTrue(optionalDto.isPresent());
         assertThat(optionalDto.get().getId(), equalTo(expected));
+
+        verify(repositoryMock).findById(anyLong());
     }
 
     @Test
@@ -168,9 +171,10 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         when(queryEntityMock.getResultList()).thenReturn(listEntity);
 
         List<UserDTO> listDto =  service.findByLastName(expected);
-        assertNotNull(listDto);
-        assertFalse(listDto.isEmpty());
+        Assertions.assertNotNull(listDto);
+        Assertions.assertFalse(listDto.isEmpty());
         assertThat(listDto.size(), equalTo(1));
+
         UserDTO userDTO = listDto.get(0);
         assertThat(userDTO.getShortName(), anyOf(containsString(expected)));
     }
@@ -189,8 +193,8 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         when(queryEntityMock.getResultList()).thenReturn(listUserExpected);
 
         List<UserDTO> listDto =  service.findByBirthday(expected);
-        assertNotNull(listDto);
-        assertFalse(listDto.isEmpty());
+        Assertions.assertNotNull(listDto);
+        Assertions.assertFalse(listDto.isEmpty());
         assertThat(listDto.size(), equalTo(listUserExpected.size()));
         UserDTO dto = listDto.get(0);
         assertThat(dto.getBirthday(), DateMatchers.sameDay(dateBirthdayExpected));
@@ -201,8 +205,21 @@ public class UserServiceTest implements InterfaceTest<UserEntity> {
         Long expected = 1L;
         when(sessionMock.createQuery(criteriaCountQueryMock)).thenReturn(queryCountMock);
         when(queryCountMock.getSingleResult()).thenReturn(expected);
+        when(entityManagerMock.getCriteriaBuilder()).thenReturn(criteriaBuilderMock);
+        when(entityManagerMock.unwrap(Session.class)).thenReturn(sessionMock);
+        when(criteriaBuilderMock.createQuery(UserEntity.class)).thenReturn(criteriaEntityQueryMock);
+        when(criteriaBuilderMock.createQuery(Long.class)).thenReturn(criteriaCountQueryMock);
+        when(criteriaCountQueryMock.from(UserEntity.class)).thenReturn(rootCountMock);
 
         Long nbUser = service.countByUserCountry("France");
         assertThat(nbUser, equalTo(expected));
+
+        verify(sessionMock).createQuery(criteriaCountQueryMock);
+        verify(queryCountMock).getSingleResult();
+        verify(entityManagerMock).getCriteriaBuilder();
+        verify(entityManagerMock).unwrap(Session.class);
+        verify(criteriaBuilderMock).createQuery(UserEntity.class);
+        verify(criteriaBuilderMock).createQuery(Long.class);
+        verify(criteriaCountQueryMock).from(UserEntity.class);
     }
 }

@@ -2,7 +2,6 @@ package com.trailerplan.service;
 
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
-import com.trailerplan.service.common.CommonService;
 
 import java.text.ParseException;
 import java.util.List;

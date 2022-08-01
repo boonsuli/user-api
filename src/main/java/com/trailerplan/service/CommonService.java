@@ -1,4 +1,4 @@
-package com.trailerplan.service.common;
+package com.trailerplan.service;
 
 import com.trailerplan.model.dto.AbstractDTO;
 import com.trailerplan.model.entity.AbstractEntity;

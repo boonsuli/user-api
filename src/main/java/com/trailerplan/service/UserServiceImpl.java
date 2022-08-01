@@ -1,4 +1,4 @@
-package com.trailerplan.service.impl;
+package com.trailerplan.service;
 
 
 import java.text.ParseException;
@@ -22,8 +22,6 @@ import com.trailerplan.model.entity.AbstractEntity_;
 import com.trailerplan.model.entity.UserEntity;
 import com.trailerplan.model.entity.UserEntity_;
 import com.trailerplan.repository.UserRepository;
-import com.trailerplan.service.UserService;
-import com.trailerplan.service.common.AbstractService;
 
 @Service("userService")
 @Transactional

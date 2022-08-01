@@ -1,4 +1,4 @@
-package com.trailerplan.controller.common;
+package com.trailerplan.controller;
 
 import java.util.List;
 import java.util.Optional;

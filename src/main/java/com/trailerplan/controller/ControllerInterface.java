@@ -1,4 +1,4 @@
-package com.trailerplan.controller.common;
+package com.trailerplan.controller;
 
 import com.trailerplan.model.dto.AbstractDTO;
 import org.springframework.http.ResponseEntity;

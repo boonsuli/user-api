@@ -1,4 +1,4 @@
-package com.trailerplan.service.common;
+package com.trailerplan.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

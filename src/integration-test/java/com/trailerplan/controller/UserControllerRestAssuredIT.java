@@ -1,17 +1,13 @@
 package com.trailerplan.controller;
 
 
-import com.trailerplan.common.DataTest;
-import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppTestConfig;
-import com.trailerplan.model.dto.UserDTO;
-import com.trailerplan.model.entity.UserEntity;
-import com.trailerplan.service.UserService;
+import javax.inject.Inject;
+
 import io.restassured.http.ContentType;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,10 +15,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.inject.Inject;
+import com.trailerplan.common.DataTest;
+import com.trailerplan.common.InterfaceTest;
+import com.trailerplan.config.AppTestConfig;
+import com.trailerplan.model.dto.UserDTO;
+import com.trailerplan.model.entity.UserEntity;
+import com.trailerplan.service.UserService;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.CoreMatchers.not;
@@ -33,7 +34,7 @@ import static org.springframework.http.HttpStatus.OK;
 /**
  * This test class use spring framework testing feature in order to test the controller w
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {AppTestConfig.class})
@@ -49,7 +50,7 @@ public class UserControllerRestAssuredIT implements InterfaceTest<UserEntity> {
     private UserEntity entity2save = DataTest.buildUserEntity();
     private UserEntity entitySaved;
 
-    @Before
+    @BeforeEach
     public void init() throws Exception {
         RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
         entitySaved = service.saveOrUpdate(entity2save);

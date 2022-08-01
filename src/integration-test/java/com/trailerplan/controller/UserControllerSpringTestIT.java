@@ -1,22 +1,17 @@
 package com.trailerplan.controller;
 
-import com.trailerplan.common.ControllerTestFactory;
-import com.trailerplan.common.DataTest;
-import com.trailerplan.common.InterfaceTest;
-import com.trailerplan.config.AppTestConfig;
-import com.trailerplan.controller.impl.UserControllerImpl;
-import com.trailerplan.model.dto.UserDTO;
-import com.trailerplan.model.entity.UserEntity;
-import com.trailerplan.service.UserService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -26,8 +21,13 @@ import org.springframework.test.web.servlet.result.StatusResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
+import com.trailerplan.common.ControllerTestFactory;
+import com.trailerplan.common.DataTest;
+import com.trailerplan.common.InterfaceTest;
+import com.trailerplan.config.AppTestConfig;
+import com.trailerplan.model.dto.UserDTO;
+import com.trailerplan.model.entity.UserEntity;
+import com.trailerplan.service.UserService;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * This test class use MockMvc of spring framework testing feature in order to test the controller with the mocking service
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppTestConfig.class})
 @ActiveProfiles("dev-local-bd-memory-hsql")
@@ -54,13 +54,13 @@ public class UserControllerSpringTestIT implements InterfaceTest<UserEntity> {
     private UserEntity entity2save = DataTest.buildUserEntity();
     private UserEntity entitySaved;
 
-    @Before
+    @BeforeEach
     public void init() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         entitySaved = service.saveOrUpdate(entity2save);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws Exception {
         if(entity2save!=null && entity2save.getId()!=null) {
             service.deleteById(entity2save.getId());

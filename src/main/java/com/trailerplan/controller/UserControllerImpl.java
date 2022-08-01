@@ -1,4 +1,4 @@
-package com.trailerplan.controller.impl;
+package com.trailerplan.controller;
 
 import java.text.ParseException;
 import java.util.List;
@@ -16,9 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.trailerplan.controller.common.AbstractController;
-import com.trailerplan.controller.common.ControllerInterface;
-import com.trailerplan.controller.UserController;
 import com.trailerplan.model.dto.UserDTO;
 import com.trailerplan.model.entity.UserEntity;
 import com.trailerplan.service.UserService;
