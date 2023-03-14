@@ -47,7 +47,7 @@
 		<docker.image.name>${project.root.name}-${project.artifactId}-api</docker.image.name>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
-		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
 		<maven-docker-spotify.version>1.4.13</maven-docker-spotify.version>
 		<maven-swagger-apigen-kongchen.version>3.1.8</maven-swagger-apigen-kongchen.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -121,10 +121,7 @@
 								</goals>
 								<configuration>
 									<target>
-										<copy
-											file="${project.build.directory}/${project.artifactId}-${project.version}.jar"
-											tofile="${project.build.directory}/${docker.image.name}.jar"
-										/>
+										<copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar" tofile="${project.build.directory}/${docker.image.name}.jar"/>
 									</target>
 								</configuration>
 							</execution>
