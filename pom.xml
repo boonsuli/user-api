@@ -24,7 +24,7 @@
 		<springboot.starter.data.rest.version>2.6.7</springboot.starter.data.rest.version>
 		<hibernate.core.version>5.4.24.Final</hibernate.core.version>
 		<hibernate.entitymanager.version>5.4.24.Final</hibernate.entitymanager.version>
-		<hibernate.jpamodelgen.version>5.4.24.Final</hibernate.jpamodelgen.version>
+		<hibernate.jpamodelgen.version>5.6.8.Final</hibernate.jpamodelgen.version>
 		<hibernate.ehcache.version>5.4.24.Final</hibernate.ehcache.version>
 		<hibernate.validator.version>6.0.19.Final</hibernate.validator.version>
 		<hsql.version>2.4.1</hsql.version>
