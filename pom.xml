@@ -19,9 +19,9 @@
 		<java.version>11</java.version>
 
 		<springboot.starter.undertow>2.6.11</springboot.starter.undertow>
-		<springboot.starter.web.version>2.5.12</springboot.starter.web.version>
+		<springboot.starter.web.version>3.1.10</springboot.starter.web.version>
 		<springboot.starter.data.jpa.version>2.5.13</springboot.starter.data.jpa.version>
-		<springboot.starter.data.rest.version>2.6.12</springboot.starter.data.rest.version>
+		<springboot.starter.data.rest.version>3.1.10</springboot.starter.data.rest.version>
 		<hibernate.core.version>5.4.24.Final</hibernate.core.version>
 		<hibernate.entitymanager.version>5.4.24.Final</hibernate.entitymanager.version>
 		<hibernate.jpamodelgen.version>5.6.8.Final</hibernate.jpamodelgen.version>
